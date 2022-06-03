@@ -14,8 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
+from homework.views import test, dynamic_test, dynamic_test_archieve, test_users, regex, test_number
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', test),
+    path('articles/', test),
+    path('articles/archive', test),
+    path('users', test),
+    path('article/<int:article_number>', dynamic_test),
+    path('article/<int:article_number>/archive', dynamic_test_archieve),
+    path('users/<int:user_number>', test_users),
+    re_path(r'^(?P<text>\d{3}[a-zA-Z]{2,}$)', regex),
+    re_path(r'^(?P<text>(?:050|093|067|096|097|098|066|095|099|063|073|093|091|092|094)[0-9]{7}$)', test_number)
 ]
