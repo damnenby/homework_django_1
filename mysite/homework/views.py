@@ -30,15 +30,5 @@ def slug_text(request, article_number, slug_text):
     })
 
 
-def generate_random_int():
-    return randint(1,100)
-
-def generate_random_slug():
-    return ''.join(choices(ascii_letters + digits, k = randint(5,10)))
-
 def index(request):
-    return render(request, 'index.html', {
-        "randint": generate_random_int(),
-        "randslug": generate_random_slug()
-        
-    })
+    return render(request, 'index.html')
