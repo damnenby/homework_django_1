@@ -1,21 +1,44 @@
-from django.shortcuts import render
+from random import randint, choices
+from string import ascii_letters, digits
+
 from django.http import HttpResponse
+from django.shortcuts import render
 # Create your views here.
 
-def test(request):
-    return HttpResponse("Hey! It's your main view!!")
+def first(request):
+    return render(request, 'articles.html')
 
-def dynamic_test(request, article_number):
-    return HttpResponse(f"Successfully! {article_number}.")
+def articles(request):
+    return render(request, 'articles.html')
 
-def dynamic_test_archieve(request, article_number):
-    return HttpResponse(f"Successfully! {article_number}. Archieve.")
+def archieve(request):
+    return render(request, 'archieve.html')
 
-def test_users(request, user_number):
-    return HttpResponse(f"Successfully! {user_number} is your user number")
+def users(request):
+    return render(request, 'users.html')
 
-def regex(request, text):
-    return HttpResponse(f"it's regexp with text: {text}")
+def article_number(request, article_number):
+    return render(request, 'article_number.html', {
+        "article_number": article_number
+    })
 
-def test_number(request, text):
-    return HttpResponse(f"number is right: {text}")
+
+def slug_text(request, article_number, slug_text):
+    return render(request, 'article_number.html', {
+        "article_number": article_number,
+        "slug_text": slug_text
+    })
+
+
+def generate_random_int():
+    return randint(1,100)
+
+def generate_random_slug():
+    return ''.join(choices(ascii_letters + digits, k = randint(5,10)))
+
+def index(request):
+    return render(request, 'index.html', {
+        "randint": generate_random_int(),
+        "randslug": generate_random_slug()
+        
+    })

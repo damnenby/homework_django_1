@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>Article number is {{article_number}}!</div>
+{% if article_number|divisibleby:"2" %}
+<div>{{article_number}} is an even number</div>
+{% else %}
+<div>{{article_number}} is an odd number</div>
+{% endif %}
+
+{% include 'slug_text.html'%}
+
+<div><a href="{% url 'index' %}">To the index page</a></div>
+
+{% endblock %}
