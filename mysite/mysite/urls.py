@@ -15,17 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from homework.views import test, dynamic_test, dynamic_test_archieve, test_users, regex, test_number
+
+from homework.views import index, articles, archieve, users, article_number, slug_text
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', test),
-    path('articles/', test),
-    path('articles/archive', test),
-    path('users', test),
-    path('article/<int:article_number>', dynamic_test),
-    path('article/<int:article_number>/archive', dynamic_test_archieve),
-    path('users/<int:user_number>', test_users),
-    re_path(r'^(?P<text>\d{3}[a-zA-Z]{2,}$)', regex),
-    re_path(r'^(?P<text>(?:050|093|067|096|097|098|066|095|099|063|073|093|091|092|094)[0-9]{7}$)', test_number)
+    path('', index, name="index"),
+    path('articles/', articles),
+    path('articles/archieve', archieve),
+    path('users', users, name="users"),
+    path('article/<int:article_number>', article_number, name="article_number"),
+    path('article/<int:article_number>/<slug:slug_text>' , slug_text, name="slug_text"),
 ]
