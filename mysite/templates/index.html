@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>Index!</div>
+
+{% load my_template %}
+{% getint as int %}
+{% getslug as slug %}
+
+<div style="display: block;"><a href="{% url 'article_number' int %}">Go to the random article!</a> </div>
+<div style="display: block;"><a href="{% url 'slug_text' int slug %}">Go to the random article with random slug!</a> </div>
+
+
+{% endblock %}
